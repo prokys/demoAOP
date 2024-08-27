@@ -26,6 +26,12 @@ public class DemoAopApplication {
 
 		//call business method
 		accountDAO.addAccount();
+
+		//do it again
+		System.out.println("\n lets call it again\n");
+
+		//second calling of method
+		accountDAO.addAccount();
 	}
 
 }
