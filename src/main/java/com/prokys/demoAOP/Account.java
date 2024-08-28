@@ -29,4 +29,12 @@ public class Account {
         this.name = name;
         this.level = level;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "name='" + name + '\'' +
+                ", level='" + level + '\'' +
+                '}';
+    }
 }
