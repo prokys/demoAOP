@@ -2,10 +2,7 @@ package com.prokys.demoAOP.aspect;
 
 import com.prokys.demoAOP.Account;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -49,7 +46,7 @@ public class MyDemoLoggingAspect {
     }
 
     //add @AfterReturning on findAccountsMethod
-    @AfterReturning(pointcut = "execution(* com.prokys.demoAOP.dao.AccountDAO.findAccounts())", returning = "result")
+    @AfterReturning(pointcut = "execution(* com.prokys.demoAOP.dao.AccountDAO.findAccounts(..))", returning = "result")
     public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> result){
         // print out which method we are advising on
         String method = joinPoint.getSignature().toShortString();
@@ -90,6 +87,15 @@ public class MyDemoLoggingAspect {
 
         //log the exception
         System.out.println("\n====>>>> Exception is: "+ exc);
+    }
+
+    @After("execution(* com.prokys.demoAOP.dao.AccountDAO.findAccounts(..))")
+    public void afterFinallyFindAccountsAdvice(JoinPoint joinPoint){
+
+        // print out which method we are advising on
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n====>>>> Executing @After on method: "+ method);
+
     }
 
 }
