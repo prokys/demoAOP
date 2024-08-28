@@ -20,8 +20,12 @@ public class MyDemoLoggingAspect {
     @Before("forDAOPackage()")
     public void beforeAddAccountAdvice(){
 
-        System.out.println("\n =====>>>> Executing @Before advice on addAccount()");
+        System.out.println("\n =====>>>> Executing @Before advice on method");
 
+    }
+    @Before("forDAOPackage()")
+    public void performApiAnalytics(){
+        System.out.println("\n =====>>>> Performing api analytics");
     }
 
 }
