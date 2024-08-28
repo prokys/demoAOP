@@ -1,6 +1,7 @@
 package com.prokys.demoAOP;
 
 import com.prokys.demoAOP.dao.AccountDAO;
+import com.prokys.demoAOP.dao.MembershipDAO;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,24 +15,22 @@ public class DemoAopApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(AccountDAO accountDAO){
+	public CommandLineRunner commandLineRunner(AccountDAO accountDAO, MembershipDAO membershipDAO){
 		return runner -> {
 
-			demoTheBeforeAdvice(accountDAO);
+			demoTheBeforeAdvice(accountDAO, membershipDAO);
 
 		};
 	}
 
-	private void demoTheBeforeAdvice(AccountDAO accountDAO){
+	private void demoTheBeforeAdvice(AccountDAO accountDAO, MembershipDAO membershipDAO){
 
 		//call business method
 		accountDAO.addAccount();
 
-		//do it again
-		System.out.println("\n lets call it again\n");
+		//call them membership business method
+		membershipDAO.addAccount();
 
-		//second calling of method
-		accountDAO.addAccount();
 	}
 
 }
